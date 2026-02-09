@@ -50,12 +50,12 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         path: ${{ github.workspace }}/CPP/linux-gcc-${{ matrix.arch }}.tar
-        name: linux-gcc-${{ matrix.arch }}
+        name: linux-gcc-${{ matrix.arch }}.tar
     - name: Upload Build Artifacts (clang)
       uses: actions/upload-artifact@v6
       with:
         path: ${{ github.workspace }}/CPP/linux-clang-${{ matrix.arch }}.tar
-        name: linux-clang-${{ matrix.arch }}
+        name: linux-clang-${{ matrix.arch }}.tar
 
   windows:
 
