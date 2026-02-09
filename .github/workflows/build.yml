@@ -41,15 +41,20 @@ jobs:
     - name: Test with gcc binary
       run: |
         Z7_PATH="CPP/build-gcc/7z" tclsh tests/7z-test.tcl -verbose tpsem
+    - name: Create tar archives
+      run: |
+        cd ${{ github.workspace }}/CPP
+        tar -cf linux-gcc-${{ matrix.arch }}.tar -C build-gcc .
+        tar -cf linux-clang-${{ matrix.arch }}.tar -C build-clang .
     - name: Upload Build Artifacts (gcc)
       uses: actions/upload-artifact@v6
       with:
-        path: ${{ github.workspace }}/CPP/build-gcc/*
+        path: ${{ github.workspace }}/CPP/linux-gcc-${{ matrix.arch }}.tar
         name: linux-gcc-${{ matrix.arch }}
     - name: Upload Build Artifacts (clang)
       uses: actions/upload-artifact@v6
       with:
-        path: ${{ github.workspace }}/CPP/build-clang/*
+        path: ${{ github.workspace }}/CPP/linux-clang-${{ matrix.arch }}.tar
         name: linux-clang-${{ matrix.arch }}
 
   windows:

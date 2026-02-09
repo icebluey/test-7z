@@ -61,6 +61,7 @@ function docker_build() {
   # Alpine packages for building
   local ALPINE_PKGS='build-base clang21-dev clang21 clang21-static llvm21-dev llvm21 llvm21-static pkgconf binutils file unzip'
   docker run --rm \
+    --cpus=$(($(nproc)-1)) \
     -v "$PROJECT_ROOT:/src:ro" \
     -v "$DOCKER_OUTDIR:/output" \
     -e ARCH="$(arch)" \
